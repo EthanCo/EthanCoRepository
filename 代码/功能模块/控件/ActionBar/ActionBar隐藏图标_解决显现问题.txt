@@ -1,0 +1,21 @@
+自定义一个主题就好了
+<resources >
+    <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="@android:actionBarStyle">@style/ActionBarStyle.Default</item>
+    </style>
+    
+    <!-- useLogo和showHome都是图标,showTitle是标题 -->
+    <style name="ActionBarStyle.Default" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:displayOptions">useLogo|showHome|showTitle</item>
+    </style>
+</resources>
+
+
+<item name="android:displayOptions">useLogo|showHome|showTitle</item>
+
+
+改成
+<item name="android:displayOptions">showTitle</item>
+
+对SDK版本有要求
+加载的时候会先加载主题，然后在加载代码，如果主题中定义有图标，然后代码设置去掉图标就会出现闪现的问题了

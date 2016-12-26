@@ -1,0 +1,5 @@
+getIntrinsicWindow和getIntrinsicHeight
+获取根据像素密度(dpi)缩放后的内部宽高
+但不是所有的Drawable都有内部宽高，比如一个颜色所形成的Drawable是没有内部宽高的  
+
+Drawable的内部宽高不等同于它的大小，一般来说Drawable是没有大小概念的，当用作View的背景时，Drawable会被拉伸至View的同等大小。

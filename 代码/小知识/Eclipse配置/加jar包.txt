@@ -1,0 +1,1 @@
+右键你的工程目录,最后一项属性Properties，第三项Java Build Path，右边选项卡第三项Libraries，然后Add JARS 或 Add External(外部的) JARS，然后找到d:\com\jun\www\STUDY.jar添加进去，应该就行了

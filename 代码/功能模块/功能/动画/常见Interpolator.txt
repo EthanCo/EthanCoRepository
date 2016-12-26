@@ -1,0 +1,13 @@
+public class InterpolatorUtil {
+	/**匀速**/
+	public static final LinearInterpolator LINEAR_INTERPOLATOR = new LinearInterpolator();
+	
+	/**开始时慢，以后加速**/
+	public static final AccelerateInterpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
+	
+	/**开始时慢，然后减速**/
+	public static final DecelerateInterpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator(); 
+	
+	/**开始与结束较慢，中间加速**/
+	public static final AccelerateDecelerateInterpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
+}}

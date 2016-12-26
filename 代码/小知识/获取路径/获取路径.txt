@@ -1,0 +1,9 @@
+第一：前面有 “ / ” 
+“ / ”代表了工程的根目录，例如工程名叫做myproject，“ / ”代表了myproject 
+me.class.getResourceAsStream("/com/x/file/myfile.xml"); 
+第二：前面没有 “ / ” 
+代表当前类的目录 
+me.class.getResourceAsStream("myfile.xml"); 
+me.class.getResourceAsStream("file/myfile.xml"); 
+
+Environment.getExternalStorageDirectory()//获取外存储设备路径

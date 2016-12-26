@@ -1,0 +1,11 @@
+private $className$() {
+}
+
+private static $className$ sInstance;
+
+public static $className$ getInstance() {
+    if (sInstance == null) {
+        sInstance = new $className$();
+    }
+    return sInstance;
+}

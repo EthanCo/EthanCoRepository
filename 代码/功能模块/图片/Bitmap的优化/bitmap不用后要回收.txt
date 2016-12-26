@@ -1,0 +1,8 @@
+
+// 先判断是否已经回收
+if(bitmap != null && !bitmap.isRecycled()){ 
+        // 回收并且置为null
+        bitmap.recycle(); 
+        bitmap = null; 
+} 
+System.gc();

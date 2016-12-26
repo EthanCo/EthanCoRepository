@@ -1,0 +1,7 @@
+以Volley为例:
+所以先到达Volley的根目录，Volley我下载到E:\下
+cd e:\Volley
+接着输入命令：
+gradlew clean build
+
+生成的jar包在\build\libs下

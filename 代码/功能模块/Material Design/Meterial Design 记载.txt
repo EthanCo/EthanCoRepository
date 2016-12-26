@@ -1,0 +1,23 @@
+CollapsingToolbarLayout:
+app:titleEnabled="false" 取消展开时的title
+
+
+AppBarLayout:
+appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset == 0) { //展开状态
+                    if (timeSubscription == null || timeSubscription.isUnsubscribed()) {
+                        timeSubscription = Observable.interval(0, 1, TimeUnit.SECONDS)
+                                .flatMap(t -> Observable.just(new SimpleDateFormat("HH:mm").format(new Date())))
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(s -> cToolbarLayout.setTitle(s));
+                    }
+                } else if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) { //折叠状态
+                    releaseTimeSubscription();
+                    cToolbarLayout.setTitle(setTitle());
+                } else {
+
+                }
+            }
+        });

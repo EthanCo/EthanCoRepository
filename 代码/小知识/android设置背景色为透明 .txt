@@ -1,0 +1,40 @@
+方法一：
+
+只要在配置文件内activity属性配置内加上
+
+android:theme="@android:style/Theme.Translucent" 
+
+就好了。
+
+ 这样就调用了android的透明样式！
+
+方法二：
+
+先在res/values下建colors.xml文件，写入：
+        <?xmlversionxmlversion="1.0"encoding="UTF-8"?> 
+　　 
+ 　　<resources> 
+　　 
+ 　　<color name="transparent">#9000</color>
+　　 
+ 　　</resources>  
+这个值设定了整个界面的透明度，为了看得见效果，现在设为透明度为56%(9/16)左右。
+
+
+再在res/values/下建styles.xml,设置程序的风格
+
+<?xmlversionxmlversion="1.0"encoding="utf-8"?>  
+<resources> 
+    <style name="Transparent">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+</resources> 
+最后一步，把这个styles.xml用在相应的Activity上。即在AndroidManifest.xml中的任意<activity>标签中添加
+
+android:theme="@style/transparent"
+
+如果想设置所有的activity都使用这个风格，可以把这句标签语句添加在<application>中。
+
+ 最后运行程序，哈哈，是不是发现整个界面都被蒙上一层半透明了。最后可以把背景色#9000换成#0000，运行程序后，就全透明了，看得见背景下的所有东西可以却都操作无效。

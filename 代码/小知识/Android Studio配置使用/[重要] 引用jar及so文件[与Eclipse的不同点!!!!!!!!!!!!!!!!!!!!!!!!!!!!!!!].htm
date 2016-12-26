@@ -1,0 +1,568 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml"><HEAD><META 
+content="IE=10.0000" http-equiv="X-UA-Compatible">
+
+<SCRIPT src="https://www.google-analytics.com/analytics.js" async=""></SCRIPT>
+ 
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<TITLE>Android Studio开发入门-引用jar及so文件 - Wuya - 博客园</TITLE> <LINK href="/bundles/blog-common.css?v=VpfXXGDfdkCz7-E0_XQ205E77kSNAF0FnyWpIgmGioM1" 
+rel="stylesheet" type="text/css"> <LINK id="MainCss" href="/skins/SimpleBlue/bundle-SimpleBlue.css?v=jJERBFSojhmgst84aaRDal9S3q1WoO-WcNudmMzGJS81" 
+rel="stylesheet" type="text/css"> <LINK title="RSS" href="http://www.cnblogs.com/xrwang/rss" 
+rel="alternate" type="application/rss+xml"> <LINK title="RSD" href="http://www.cnblogs.com/xrwang/rsd.xml" 
+rel="EditURI" type="application/rsd+xml"> <LINK href="http://www.cnblogs.com/xrwang/wlwmanifest.xml" 
+rel="wlwmanifest" type="application/wlwmanifest+xml"> 
+<SCRIPT src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></SCRIPT>
+  
+<SCRIPT type="text/javascript">var currentBlogApp = 'xrwang', cb_enable_mathjax=false;</SCRIPT>
+ 
+<SCRIPT src="/bundles/blog-common.js?v=KJbWl4pDSR547B6rgxi3B-dDHKVpKi8xHNL9Qhc1rkk1" type="text/javascript"></SCRIPT>
+ </HEAD> 
+<BODY><A name="top"></A> 
+<DIV id="home">
+<DIV id="header">
+<DIV id="blogTitle"><!--done--> 
+<DIV class="title"><A class="headermaintitle" id="Header1_HeaderTitle" href="http://www.cnblogs.com/xrwang/">无涯（C、.net、图像处理、算法）</A></DIV>
+<DIV class="subtitle">欢迎光临淘宝店<B><A href="http://bbmhjy.taobao.com" target="_blank">贝贝de梦幻家园</A></B>，经营张家界土特产：<A 
+href="http://bbmhjy.taobao.com/?search=y&amp;scid=341776248&amp;scname=3a6y6A%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">莓茶</A>、<A href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778426&amp;scname=tsXW2bLo&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">杜仲茶</A>、<A href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778427&amp;scname=uPC32w%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">葛根粉</A>、<A href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778428&amp;scname=3qe32w%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">蕨粉</A>、<A href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778431&amp;scname=wLG9tw%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">爆椒</A>、<A href="http://bbmhjy.taobao.com/?search=y&amp;scid=348970080&amp;scname=0dK2%2Bsm9vvo%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">山菌</A>、<A href="http://bbmhjy.taobao.com/?search=y&amp;scid=348970081&amp;scname=wLDOttKwzrY%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">野味</A>、<A href="http://bbmhjy.taobao.com/?search=y&amp;scid=348970082&amp;scname=zNjJq9Chs9Q%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">小吃</A>...</DIV></DIV><!--end: blogTitle 博客的标题和副标题 -->	 
+<DIV id="navigator">
+<UL id="navList">
+  <LI id="nav_sitehome"><A class="menu" id="MyLinks1_HomeLink" href="http://www.cnblogs.com/">博客园</A></LI>
+  <LI id="nav_myhome"><A class="menu" id="MyLinks1_MyHomeLink" href="http://www.cnblogs.com/xrwang/">首页</A></LI>
+  <LI id="nav_q"><A class="menu" href="http://q.cnblogs.com/">博问</A></LI>
+  <LI id="nav_ing"><A class="menu" 
+  href="http://home.cnblogs.com/ing/">闪存</A></LI>
+  <LI id="nav_newpost"><A class="menu" id="MyLinks1_NewPostLink" href="http://i.cnblogs.com/EditPosts.aspx?opt=1" 
+  rel="nofollow">新随笔</A></LI>
+  <LI id="nav_contact"><A class="menu" id="MyLinks1_ContactLink" href="http://msg.cnblogs.com/send/Wuya" 
+  rel="nofollow">联系</A></LI>
+  <LI id="nav_rss"><A class="menu" id="MyLinks1_Syndication" href="http://www.cnblogs.com/xrwang/rss">订阅</A><!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/xrwang/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></LI>
+  <LI id="nav_admin"><A class="menu" id="MyLinks1_Admin" href="http://i.cnblogs.com/" 
+  rel="nofollow">管理</A></LI></UL>
+<DIV class="blogStats"><!--done-->随笔-40&nbsp; 文章-0&nbsp; 评论-766&nbsp;			
+		 </DIV><!--end: blogStats -->	 </DIV><!--end: navigator 博客导航栏 --> </DIV><!--end: header 头部 --> 
+<DIV id="main">
+<DIV id="mainContent">
+<DIV class="forFlow">
+<DIV id="post_detail"><!--done--> 
+<DIV id="topics">
+<DIV class="post">
+<H1 class="postTitle"><A class="postTitle2" id="cb_post_title_url" href="http://www.cnblogs.com/xrwang/p/AndroidStudioImportJarAndSoLibrary.html">Android 
+Studio开发入门-引用jar及so文件</A>		 </H1>
+<DIV class="clear"></DIV>
+<DIV class="postBody">
+<DIV id="cnblogs_post_body">
+<P>&nbsp; &nbsp; 作者：王先荣<BR>&nbsp; &nbsp; 
+最近初学安卓开发，因为以前从未用过JAVA，连基本的语法都要从头开始，所以不太顺利。在尝试使用百度语音识别引擎时遇到了如何引用jar及so文件的问题。在GOOGLE加多次尝试之后，找到了一个比较简单的方法，特介绍如下。<BR><STRONG>一、引用jar文件</STRONG><BR>&nbsp; 
+&nbsp; 1.将jar文件复制、粘贴到app的libs目录中；<BR>&nbsp; &nbsp; 2.右键点击jar文件，并点击弹出菜单中的“Add As 
+Library”，将jar文件作为类库添加到项目中；<BR>&nbsp; &nbsp; 3.选择指定的类库。<BR>&nbsp; &nbsp; 
+注：如果不执行2、3步，jar文件将不起作用，并且不能使用import语句引用。</P>
+<P>&nbsp; &nbsp;&nbsp;<IMG style="width: 784px;" alt="" src="http://images.cnitblog.com/i/21602/201405/011028264559301.png"><BR><STRONG>二、引用so文件</STRONG><BR>&nbsp; 
+&nbsp; 网上有很多引用so文件的方法，多数都很麻烦，在KYLE THIELK的博客中找到了一种简单的方法。<BR>&nbsp; &nbsp; 
+1.在“src/main”目录中新建名为“jniLibs”的目录；<BR>&nbsp; &nbsp; 
+2.将so文件复制、粘贴到“jniLibs”目录内。<BR>&nbsp; &nbsp; 
+注：如果没有引用so文件，可能会在程序执行的时候加载类库失败，有类似如下的DEBUG提示：<BR>&nbsp; &nbsp; 
+java.lang.UnsatisfiedLinkError: Couldn't load library xxxx from loader 
+dalvik.system.PathClassLoader</P>
+<P>&nbsp; &nbsp;&nbsp;<IMG alt="" src="http://images.cnitblog.com/i/21602/201405/011028520642193.png"><BR><STRONG>三、致谢及源代码下载</STRONG><BR>&nbsp; 
+&nbsp; 感谢您看完本文，希望对您有帮助。<BR>&nbsp; &nbsp; 源代码是使用百度语音识别引擎的例子，<A href="http://files.cnblogs.com/xrwang/AndroidTestProject.rar" 
+target="_blank">点击这里下载</A>。<BR>&nbsp; &nbsp; 注：1.本文使用的Android 
+Studio版本为0.4.6；<BR>&nbsp; &nbsp; 2.API 
+KEY及安全KEY我随便改了个，您需要替换成自己申请的KEY才能正常运行；<BR>&nbsp; &nbsp; 3.参考网址：<A href="http://www.kylethielk.com/blog/include-native-so-library-in-apk-with-android-studio/" 
+target="_blank">http://www.kylethielk.com/blog/include-native-so-library-in-apk-with-android-studio/</A></P></DIV>
+<DIV id="MySignature"></DIV>
+<DIV class="clear"></DIV>
+<DIV id="blog_post_info_block">
+<DIV id="BlogPostCategory">分类: <A href="http://www.cnblogs.com/xrwang/category/575377.html">安卓开发</A></DIV>
+<DIV id="EntryTag">标签: <A href="http://www.cnblogs.com/xrwang/tag/Android%20Studio/">Android 
+Studio</A></DIV>
+<DIV id="blog_post_info">
+<DIV id="green_channel">绿色通道： <A id="green_channel_digg" onclick="DiggIt(3702607,cb_blogId,1);green_channel_success(this,'谢谢推荐！');" 
+href="javascript:void(0);">好文要顶</A> <A id="green_channel_follow" onclick="c_follow();" 
+href="javascript:void(0);">关注我</A> <A id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" 
+href="javascript:void(0);">收藏该文</A><A id="green_channel_contact" href="http://msg.cnblogs.com/send/Wuya" 
+target="_blank">与我联系</A> <A title="分享至新浪微博" id="green_channel_weibo" onclick="ShareToTsina()" 
+href="javascript:void(0);"><IMG alt="" src="http://static.cnblogs.com/images/icon_weibo_24.png"></A> 
+</DIV>
+<DIV id="author_profile">
+<DIV class="author_profile_info" id="author_profile_info"><A href="http://home.cnblogs.com/u/xrwang/" 
+target="_blank"><IMG class="author_avatar" alt="" src="http://pic.cnblogs.com/face/u21602.jpg"></A> 
+<DIV class="author_profile_info" id="author_profile_detail"><A href="http://home.cnblogs.com/u/xrwang/">Wuya</A><BR><A 
+href="http://home.cnblogs.com/u/xrwang/followees">关注 - 5</A><BR><A href="http://home.cnblogs.com/u/xrwang/followers">粉丝 
+- 333</A> </DIV></DIV>
+<DIV class="clear"></DIV>
+<DIV id="author_profile_honor"></DIV>
+<DIV id="author_profile_follow"><A onclick="c_follow();return false;" href="javascript:void(0);">+加关注</A> 
+</DIV></DIV>
+<DIV id="div_digg">
+<DIV class="diggit" onclick="votePost(3702607,'Digg')"><SPAN class="diggnum" id="digg_count">3</SPAN> 
+    </DIV>
+<DIV class="buryit" onclick="votePost(3702607,'Bury')"><SPAN class="burynum" id="bury_count">0</SPAN>
+	 </DIV>
+<DIV class="clear"></DIV>
+<DIV class="diggword" id="digg_tips">    (请您对文章做出评价)     </DIV></DIV></DIV>
+<DIV class="clear"></DIV>
+<DIV id="post_next_prev"><A class="p_n_p_prefix" href="http://www.cnblogs.com/xrwang/p/SampleOfRansac.html">« 
+</A> 上一篇：<A title="发布于2014-02-03 08:25" href="http://www.cnblogs.com/xrwang/p/SampleOfRansac.html">随机抽样一致性算法（RANSAC)示例及源代码</A><BR><A 
+class="p_n_p_prefix" href="http://www.cnblogs.com/xrwang/p/PublicAccount-QuickStart.html">» 
+</A> 下一篇：<A title="发布于2015-02-25 10:46" href="http://www.cnblogs.com/xrwang/p/PublicAccount-QuickStart.html">.net微信公众号开发——快速入门</A><BR></DIV></DIV></DIV>
+<DIV class="postDesc">posted @ <SPAN id="post-date">2014-05-01 10:35</SPAN> <A 
+href="http://www.cnblogs.com/xrwang/">Wuya</A> 阅读(<SPAN 
+id="post_view_count">28596</SPAN>) 评论(<SPAN id="post_comment_count">4</SPAN>)  
+<A href="http://i.cnblogs.com/EditPosts.aspx?postid=3702607" 
+rel="nofollow">编辑</A> <A onclick="AddToWz(3702607);return false;" 
+href="#">收藏</A></DIV></DIV>
+<SCRIPT type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=25161,cb_entryId=3702607,cb_blogApp=currentBlogApp,cb_blogUserGuid='716e3d0b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2014/5/1 10:35:00';loadViewCount(cb_entryId);</SCRIPT>
+	 </DIV><!--end: topics 文章、评论容器--> </DIV><A name="!comments"></A>
+<DIV id="blog-comments-placeholder">
+<DIV id="comments_pager_top"></DIV><!--done--> 
+<DIV class="feedback_area_title">评论列表</DIV>
+<DIV class="feedbackNoItems"></DIV>
+<DIV class="feedbackItem">
+<DIV class="feedbackListSubtitle">
+<DIV class="feedbackManage">&nbsp;&nbsp;<SPAN class="comment_actions"></SPAN>
+				 </DIV><A class="layer" href="#3102237">#1楼</A><A name="3102237" id="comment_anchor_3102237"></A> 
+ <SPAN class="comment_date">2015-01-07 17:13</SPAN> <A id="a_comment_author_3102237" 
+href="http://www.cnblogs.com/Supperlitt/" target="_blank">Supper_litt</A> <A 
+title="发送站内短消息" class="sendMsg2This" href="http://msg.cnblogs.com/send/Supper_litt">&nbsp;</A>
+			 </DIV>
+<DIV class="feedbackCon">
+<DIV class="blog_comment_body" id="comment_body_3102237">先试试吧，，，</DIV>
+<DIV class="comment_vote"><A class="comment_digg" onclick="return voteComment(3102237,'Digg',this)" 
+href="javascript:void(0);">支持(0)</A><A class="comment_bury" onclick="return voteComment(3102237,'Bury',this)" 
+href="javascript:void(0);">反对(0)</A></DIV><SPAN id="comment_3102237_avatar" 
+style="display: none;">http://pic.cnblogs.com/face/u141063.jpg?id=29153427</SPAN>
+			 </DIV></DIV>
+<DIV class="feedbackItem">
+<DIV class="feedbackListSubtitle">
+<DIV class="feedbackManage">					&nbsp;&nbsp;<SPAN 
+class="comment_actions"></SPAN>				 </DIV><A class="layer" 
+href="#3138820">#2楼</A><A name="3138820" id="comment_anchor_3138820"></A>  <SPAN 
+class="comment_date">2015-03-11 12:00</SPAN> <A id="a_comment_author_3138820" 
+href="http://www.cnblogs.com/rakor/" target="_blank">随风net</A> <A title="发送站内短消息" 
+class="sendMsg2This" 
+href="http://msg.cnblogs.com/send/%E9%9A%8F%E9%A3%8Enet">&nbsp;</A>			 </DIV>
+<DIV class="feedbackCon">
+<DIV class="blog_comment_body" 
+id="comment_body_3138820">引用so文件的方法在gradle1.1下都不行。</DIV>
+<DIV class="comment_vote"><A class="comment_digg" onclick="return voteComment(3138820,'Digg',this)" 
+href="javascript:void(0);">支持(0)</A><A class="comment_bury" onclick="return voteComment(3138820,'Bury',this)" 
+href="javascript:void(0);">反对(0)</A></DIV></DIV></DIV>
+<DIV class="feedbackItem">
+<DIV class="feedbackListSubtitle">
+<DIV class="feedbackManage">					&nbsp;&nbsp;<SPAN 
+class="comment_actions"></SPAN>				 </DIV><A class="layer" 
+href="#3139130">#3楼</A><A name="3139130" id="comment_anchor_3139130"></A>[<SPAN 
+class="louzhu">楼主</SPAN>]  <SPAN class="comment_date">2015-03-11 19:42</SPAN> <A 
+id="a_comment_author_3139130" href="http://www.cnblogs.com/xrwang/" target="_blank">Wuya</A> 
+<A title="发送站内短消息" class="sendMsg2This" 
+href="http://msg.cnblogs.com/send/Wuya">&nbsp;</A>			 </DIV>
+<DIV class="feedbackCon">
+<DIV class="blog_comment_body" id="comment_body_3139130"><A title="查看所回复的评论" 
+onclick="commentManager.renderComments(0,50,3138820);" 
+href="#3138820">@</A>随风net<BR>写这篇文章的时候是Android Studio 0.4左右的版本吧，现在不知道怎么样了。</DIV>
+<DIV class="comment_vote"><A class="comment_digg" onclick="return voteComment(3139130,'Digg',this)" 
+href="javascript:void(0);">支持(0)</A><A class="comment_bury" onclick="return voteComment(3139130,'Bury',this)" 
+href="javascript:void(0);">反对(0)</A></DIV><SPAN id="comment_3139130_avatar" 
+style="display: none;">http://pic.cnblogs.com/face/u21602.jpg</SPAN>
+			 </DIV></DIV>
+<DIV class="feedbackItem">
+<DIV class="feedbackListSubtitle">
+<DIV class="feedbackManage">					&nbsp;&nbsp;<SPAN 
+class="comment_actions"></SPAN>				 </DIV><A class="layer" 
+href="#3242371">#4楼</A><A name="3242371" id="comment_anchor_3242371"></A><SPAN 
+id="comment-maxId" style="display: none;">3242371</SPAN><SPAN id="comment-maxDate" 
+style="display: none;">2015/8/6 13:36:34</SPAN>  <SPAN 
+class="comment_date">2015-08-06 13:36</SPAN> <A id="a_comment_author_3242371" 
+href="http://www.cnblogs.com/ok519/" target="_blank">汉城</A> <A title="发送站内短消息" 
+class="sendMsg2This" 
+href="http://msg.cnblogs.com/send/%E6%B1%89%E5%9F%8E">&nbsp;</A>			 </DIV>
+<DIV class="feedbackCon">
+<DIV class="blog_comment_body" id="comment_body_3242371">xiexie</DIV>
+<DIV class="comment_vote"><A class="comment_digg" onclick="return voteComment(3242371,'Digg',this)" 
+href="javascript:void(0);">支持(0)</A><A class="comment_bury" onclick="return voteComment(3242371,'Bury',this)" 
+href="javascript:void(0);">反对(0)</A></DIV></DIV></DIV>
+<DIV id="comments_pager_bottom"></DIV></DIV>
+<SCRIPT type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</SCRIPT>
+ 
+<DIV class="commentform" id="comment_form"><A name="commentform"></A> 
+<DIV id="divCommentShow"></DIV>
+<DIV id="comment_nav"><SPAN id="span_refresh_tips"></SPAN><A id="lnk_RefreshComments" 
+onclick="return RefreshCommentList();" href="javascript:void(0);">刷新评论</A><A 
+onclick="return RefreshPage();" href="#">刷新页面</A><A href="#top">返回顶部</A></DIV>
+<DIV id="comment_form_container">
+<DIV class="login_tips">注册用户登录后才能发表评论，请 <A class="underline" onclick="return login('commentform');" 
+href="javascript:void(0);" rel="nofollow">登录</A> 或 <A class="underline" onclick="return register();" 
+href="javascript:void(0);" rel="nofollow">注册</A>，<A href="http://www.cnblogs.com">访问</A>网站首页。</DIV></DIV>
+<DIV class="ad_text_commentbox" id="ad_text_under_commentbox"></DIV>
+<DIV id="site_nav_under"><A href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 
+大型组态工控、电力仿真CAD与GIS源码库</A><BR><A href="http://www.rongcloud.cn/" 
+target="_blank">【推荐】融云即时通讯云－专注为 App 开发者提供IM云服务</A><BR><A href="https://www.jpush.cn/" 
+target="_blank">【推荐】免费集成极光推送SDK，让APP实现高安全、高并发的推送功能</A><BR><A href="http://click.aliyun.com/m/1328/" 
+target="_blank">【专享】阿里云9折优惠码：bky901</A><BR></DIV>
+<DIV id="opt_under_post"></DIV>
+<SCRIPT type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); 
+    fixPostBodyFormat();
+</SCRIPT>
+ 
+<DIV class="c_ad_block" id="google_ad_c1">
+<OBJECT width="300" height="250" data="http://img.cnblogs.com/ad/IBM_Bluemix_C1.swf" 
+type="application/x-shockwave-flash"><PARAM name="src" value="http://img.cnblogs.com/ad/IBM_Bluemix_C1.swf"></OBJECT></DIV>
+<DIV id="under_post_news">
+<DIV class="itnews c_ad_block"><B>最新IT新闻</B>:<BR>·  <A href="http://news.cnblogs.com/n/528843/" 
+target="_blank">智能汽车时代 英特尔的车联网进阶</A><BR>·  <A href="http://news.cnblogs.com/n/528842/" 
+target="_blank">滴滴快的与宇通客车达成战略合作</A><BR>·  <A href="http://news.cnblogs.com/n/528841/" 
+target="_blank">关于Siri之父Adam Cheyer的一切：Siri就是我的孩子 她还在成长</A><BR>·  <A href="http://news.cnblogs.com/n/528840/" 
+target="_blank">IPFS ：分布式HTTP替代</A><BR>·  <A href="http://news.cnblogs.com/n/528839/" 
+target="_blank">这个连相册都不给开的自拍APP是怎么2年获得500万用户的</A><BR>» <A title="IT新闻" href="http://news.cnblogs.com/" 
+target="_blank">更多新闻...</A></DIV></DIV>
+<DIV class="c_ad_block" id="google_ad_c2"><A href="http://jiuye.jikexueyuan.com/train/android?hmsr=cnb_jiuye_android_banner_09.08" 
+target="_blank"><IMG width="468" height="60" alt="" src="http://images2015.cnblogs.com/news/24442/201509/24442-20150908103403950-481956115.jpg"></A></DIV>
+<DIV id="under_post_kb">
+<DIV class="itnews c_ad_block" id="kb_block"><B>最新知识库文章</B>:<BR>
+<DIV id="kb_recent">·  <A href="http://kb.cnblogs.com/page/519485/" target="_blank">软件设计杂谈</A><BR>· 
+ <A href="http://kb.cnblogs.com/page/527253/" 
+target="_blank">打破定式，突破屏障，走出自己的创意舒适区</A><BR>·  <A href="http://kb.cnblogs.com/page/527139/" 
+target="_blank">关于软件开发，你老板不知道的7件事</A><BR>·  <A href="http://kb.cnblogs.com/page/526769/" 
+target="_blank">关于烂代码的那些事（中）</A><BR>·  <A href="http://kb.cnblogs.com/page/526768/" 
+target="_blank">关于烂代码的那些事（上）</A><BR></DIV>» <A href="http://kb.cnblogs.com/" 
+target="_blank">更多知识库文章...</A></DIV></DIV>
+<DIV class="c_ad_block" id="HistoryToday"></DIV>
+<SCRIPT type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</SCRIPT>
+ </DIV></DIV><!--end: forFlow -->	 </DIV><!--end: mainContent 主体内容容器-->	 
+<DIV id="sideBar">
+<DIV id="sideBarMain"><!--done--> 
+<DIV class="newsItem">
+<H3 class="catListTitle">公告</H3>
+<DIV id="blog-news">
+<DIV>目前在努力经营老婆的淘宝店<A href="http://bbmhjy.taobao.com/" target="_blank"><SPAN 
+style="color: rgb(51, 153, 102);"></SPAN></A>，欢迎各位光临。<IMG alt="" src="http://www.cnblogs.com/Emoticons/baimantou/105104147.gif"><BR><A 
+title="贝贝de梦幻家园" href="http://bbmhjy.taobao.com/" target="_blank"><IMG alt="" 
+src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E7%BD%91%E5%BA%97%E6%8B%9B%E7%89%8C.png" 
+border="0"></A>特供张家界土特产：</DIV>
+<P><A title="土家莓茶" href="http://bbmhjy.taobao.com/?search=y&amp;scid=341776248&amp;scname=3a6y6A%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E8%8E%93%E8%8C%B6.png" 
+border="0"></A>&nbsp;</P>
+<P><A title="天然杜仲茶" href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778426&amp;scname=tsXW2bLo&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E6%9D%9C%E4%BB%B2%E8%8C%B6.png" 
+border="0"></A>&nbsp;</P>
+<P><A title="野生葛根粉" href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778427&amp;scname=uPC32w%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E8%91%9B%E6%A0%B9%E7%B2%89.png" 
+border="0"></A>&nbsp;</P>
+<P><A title="纯正蕨粉" href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778428&amp;scname=3qe32w%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E8%95%A8%E7%B2%89.png" 
+border="0"></A>&nbsp;</P>
+<P><A title="劲爆辣椒" href="http://bbmhjy.taobao.com/?search=y&amp;scid=341778431&amp;scname=wLG9tw%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E8%BE%A3%E6%A4%92.png" 
+border="0"></A>&nbsp;</P>
+<P><A title="岩耳山菌" href="http://bbmhjy.taobao.com/?search=y&amp;scid=348970080&amp;scname=0dK2%2Bsm9vvo%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E5%B2%A9%E8%80%B3%E5%B1%B1%E8%8F%8C.png" 
+border="0"></A>&nbsp;</P>
+<P><A title="腊味野味" href="http://bbmhjy.taobao.com/?search=y&amp;scid=348970081&amp;scname=wLDOttKwzrY%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E8%85%8A%E5%91%B3%E9%87%8E%E5%91%B3.png" 
+border="0"></A>&nbsp;</P>
+<P><A title="特色小吃" href="http://bbmhjy.taobao.com/?search=y&amp;scid=348970082&amp;scname=zNjJq9Chs9Q%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank"><IMG alt="" src="http://images.cnblogs.com/cnblogs_com/xrwang/aa/%E5%88%86%E7%B1%BB%E5%9B%BE-%E7%89%B9%E8%89%B2%E5%B0%8F%E5%90%83.png" 
+border="0"></A>&nbsp;</P>
+<P>购物即送<A title="赠品" href="http://bbmhjy.taobao.com/?search=y&amp;scid=350050154&amp;scname=1PnGtw%3D%3D&amp;checkedRange=true&amp;queryType=cat" 
+target="_blank">赠品</A>哦～～ <IMG alt="" src="http://www.cnblogs.com/Emoticons/baimantou/223332943.gif"></P>
+<DIV id="profile_block">昵称：<A 
+href="http://home.cnblogs.com/u/xrwang/">Wuya</A><BR>园龄：<A title="入园时间：2007-03-16" 
+href="http://home.cnblogs.com/u/xrwang/">8年5个月</A><BR>粉丝：<A href="http://home.cnblogs.com/u/xrwang/followers/">333</A><BR>关注：<A 
+href="http://home.cnblogs.com/u/xrwang/followees/">5</A>
+<DIV id="p_b_follow"><A onclick="cnblogs.UserManager.FollowBlogger('716e3d0b-63cf-dd11-9e4d-001cf0cd104b')" 
+href="javascript:void(0);">+加关注</A></DIV></DIV></DIV>
+<SCRIPT type="text/javascript">loadBlogNews();</SCRIPT>
+ </DIV>
+<DIV id="calendar">
+<DIV id="blog-calendar">
+<TABLE title="日历" class="Cal" id="blogCalendar" cellspacing="0" 
+  cellpadding="0"><TBODY>
+  <TR>
+    <TD colspan="7">
+      <TABLE class="CalTitle" cellspacing="0">
+        <TBODY>
+        <TR>
+          <TD class="CalNextPrev"><A onclick="loadBlogCalendar('2015/08/01');return false;" 
+            href="javascript:void(0);">&lt;</A></TD>
+          <TD align="center">2015年9月</TD>
+          <TD align="right" class="CalNextPrev"><A onclick="loadBlogCalendar('2015/10/01');return false;" 
+            href="javascript:void(0);">&gt;</A></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TH align="center" class="CalDayHeader" abbr="日" scope="col">日</TH>
+    <TH align="center" class="CalDayHeader" abbr="一" scope="col">一</TH>
+    <TH align="center" class="CalDayHeader" abbr="二" scope="col">二</TH>
+    <TH align="center" class="CalDayHeader" abbr="三" scope="col">三</TH>
+    <TH align="center" class="CalDayHeader" abbr="四" scope="col">四</TH>
+    <TH align="center" class="CalDayHeader" abbr="五" scope="col">五</TH>
+    <TH align="center" class="CalDayHeader" abbr="六" scope="col">六</TH></TR>
+  <TR>
+    <TD align="center" class="CalOtherMonthDay">30</TD>
+    <TD align="center" class="CalOtherMonthDay">31</TD>
+    <TD align="center">1</TD>
+    <TD align="center">2</TD>
+    <TD align="center">3</TD>
+    <TD align="center">4</TD>
+    <TD align="center" class="CalWeekendDay">5</TD></TR>
+  <TR>
+    <TD align="center" class="CalWeekendDay">6</TD>
+    <TD align="center">7</TD>
+    <TD align="center">8</TD>
+    <TD align="center">9</TD>
+    <TD align="center" class="CalTodayDay">10</TD>
+    <TD align="center">11</TD>
+    <TD align="center" class="CalWeekendDay">12</TD></TR>
+  <TR>
+    <TD align="center" class="CalWeekendDay">13</TD>
+    <TD align="center">14</TD>
+    <TD align="center">15</TD>
+    <TD align="center">16</TD>
+    <TD align="center">17</TD>
+    <TD align="center">18</TD>
+    <TD align="center" class="CalWeekendDay">19</TD></TR>
+  <TR>
+    <TD align="center" class="CalWeekendDay">20</TD>
+    <TD align="center">21</TD>
+    <TD align="center">22</TD>
+    <TD align="center">23</TD>
+    <TD align="center">24</TD>
+    <TD align="center">25</TD>
+    <TD align="center" class="CalWeekendDay">26</TD></TR>
+  <TR>
+    <TD align="center" class="CalWeekendDay">27</TD>
+    <TD align="center">28</TD>
+    <TD align="center">29</TD>
+    <TD align="center">30</TD>
+    <TD align="center" class="CalOtherMonthDay">1</TD>
+    <TD align="center" class="CalOtherMonthDay">2</TD>
+    <TD align="center" class="CalOtherMonthDay">3</TD></TR>
+  <TR>
+    <TD align="center" class="CalOtherMonthDay">4</TD>
+    <TD align="center" class="CalOtherMonthDay">5</TD>
+    <TD align="center" class="CalOtherMonthDay">6</TD>
+    <TD align="center" class="CalOtherMonthDay">7</TD>
+    <TD align="center" class="CalOtherMonthDay">8</TD>
+    <TD align="center" class="CalOtherMonthDay">9</TD>
+    <TD align="center" class="CalOtherMonthDay">10</TD></TR></TBODY></TABLE></DIV>
+<SCRIPT type="text/javascript">loadBlogDefaultCalendar();</SCRIPT>
+</DIV>
+<DIV id="leftcontentcontainer">
+<DIV id="blog-sidecolumn">
+<DIV class="sidebar-block" id="sidebar_search">
+<DIV class="mySearch" id="sidebar_search">
+<H3 class="catListTitle">搜索</H3>
+<DIV id="sidebar_search_box">
+<DIV class="div_my_zzk" 
+id="widget_my_zzk"><INPUT class="input_my_zzk" id="q" onkeydown="return zzk_go_enter(event);" type="text">&nbsp;<INPUT class="btn_my_zzk" id="btnZzk" onclick="zzk_go()" type="button" value="找找看"></DIV></DIV></DIV></DIV>
+<DIV class="sidebar-block" id="sidebar_shortcut">
+<DIV class="catListLink">
+<H3 class="catListTitle">常用链接</H3>
+<UL>
+  <LI><A title="我的博客的随笔列表" href="http://www.cnblogs.com/xrwang/p/">我的随笔</A></LI>
+  <LI><A title="我发表过的评论列表" 
+  href="http://www.cnblogs.com/xrwang/MyComments.html">我的评论</A></LI>
+  <LI><A title="我评论过的随笔列表" 
+  href="http://www.cnblogs.com/xrwang/OtherPosts.html">我的参与</A></LI>
+  <LI><A title="我的博客的评论列表" href="http://www.cnblogs.com/xrwang/RecentComments.html">最新评论</A></LI>
+  <LI><A title="我的博客的标签列表" 
+  href="http://www.cnblogs.com/xrwang/tag/">我的标签</A></LI></UL>
+<DIV id="itemListLin_con" style="display: none;">
+<UL></UL></DIV></DIV></DIV>
+<DIV class="sidebar-block" id="sidebar_toptags">
+<DIV class="catListTag">
+<H3 class="catListTitle">我的标签</H3>
+<UL>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/weixin/">weixin</A>(5)</LI>
+  <LI><A 
+  href="http://www.cnblogs.com/xrwang/tag/javascript/">javascript</A>(2)</LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</A>(2)</LI>
+  <LI><A 
+  href="http://www.cnblogs.com/xrwang/tag/%E9%A2%9C%E8%89%B2/">颜色</A>(1)</LI>
+  <LI><A 
+  href="http://www.cnblogs.com/xrwang/tag/%E6%A0%B7%E5%BC%8F%E8%A1%A8/">样式表</A>(1)</LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/js/">js</A>(1)</LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/RANSAC%20%E9%9A%8F%E6%9C%BA%E6%8A%BD%E6%A0%B7%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95/">RANSAC 
+  随机抽样一致性算法</A>(1)</LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/vbs/">vbs</A>(1)</LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/vs2005/">vs2005</A>(1)</LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/.net%20%E5%9B%BE%E7%89%87%20%E6%AF%94%E8%BE%83/">.net 
+  图片 比较</A>(1)</LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/tag/">更多</A></LI></UL></DIV></DIV>
+<DIV id="sidebar_categories">
+<DIV class="catListPostCategory">
+<H3 class="catListTitle">随笔分类<SPAN 
+style="font-size: 11px; font-weight: normal;">(34)</SPAN></H3>
+<UL>
+  <LI><A id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/xrwang/category/286522.html">asp.net网站(2)</A> 
+  </LI>
+  <LI><A id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/xrwang/category/575377.html">安卓开发(1)</A> 
+  </LI>
+  <LI><A id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/xrwang/category/303742.html">其他(4)</A> 
+  </LI>
+  <LI><A id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/xrwang/category/286829.html">算法(1)</A> 
+  </LI>
+  <LI><A id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/xrwang/category/231541.html">图像处理(21)</A> 
+  </LI>
+  <LI><A id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/xrwang/category/660918.html">微信(5)</A> 
+  </LI></UL></DIV>
+<DIV class="catListPostArchive">
+<H3 class="catListTitle">随笔档案<SPAN 
+style="font-size: 11px; font-weight: normal;">(40)</SPAN></H3>
+<UL>
+  <LI><A id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/xrwang/archive/2015/03.html">2015年3月 
+  (3)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/xrwang/archive/2015/02.html">2015年2月 
+  (2)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/xrwang/archive/2014/05.html">2014年5月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/xrwang/archive/2014/02.html">2014年2月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/xrwang/archive/2013/05.html">2013年5月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/xrwang/archive/2012/06.html">2012年6月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/xrwang/archive/2012/04.html">2012年4月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/xrwang/archive/2011/07.html">2011年7月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/xrwang/archive/2011/06.html">2011年6月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/xrwang/archive/2011/04.html">2011年4月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/xrwang/archive/2011/03.html">2011年3月 
+  (2)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/xrwang/archive/2010/12.html">2010年12月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/xrwang/archive/2010/11.html">2010年11月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/xrwang/archive/2010/04.html">2010年4月 
+  (3)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/xrwang/archive/2010/03.html">2010年3月 
+  (2)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/xrwang/archive/2010/02.html">2010年2月 
+  (7)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/xrwang/archive/2010/01.html">2010年1月 
+  (3)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/xrwang/archive/2008/09.html">2008年9月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/xrwang/archive/2008/08.html">2008年8月 
+  (3)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/xrwang/archive/2008/07.html">2008年7月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/xrwang/archive/2008/01.html">2008年1月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/xrwang/archive/2007/05.html">2007年5月 
+  (1)</A> </LI>
+  <LI><A id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/xrwang/archive/2007/03.html">2007年3月 
+  (1)</A> </LI></UL></DIV></DIV>
+<DIV class="sidebar-block" id="sidebar_recentcomments">
+<DIV id="recent_comments_wrap">
+<DIV class="catListComment">
+<H3 class="catListTitle">最新评论</H3>
+<DIV id="RecentCommentsBlock">
+<UL>
+  <LI class="recent_comment_title"><A href="http://www.cnblogs.com/xrwang/p/PublicAccount-QuickStart.html#3254931">1. 
+  Re:.net微信公众号开发——快速入门</A></LI>
+<LI class="recent_comment_body">楼主是张家界的吗？ 顶一个！</LI>
+  <LI class="recent_comment_author">--stoneniqiu</LI>
+  <LI class="recent_comment_title"><A href="http://www.cnblogs.com/xrwang/archive/2010/03/03/ImageFeatureDetection.html#3250886">2. 
+  Re:图像特征检测(Image Feature Detection)</A></LI>
+<LI class="recent_comment_body">请问大神使用emgucv识别人脸时，可以区分正脸和侧脸吗，应该怎么区分呢？</LI>
+  <LI class="recent_comment_author">--tiigger</LI>
+  <LI class="recent_comment_title"><A href="http://www.cnblogs.com/xrwang/p/AndroidStudioImportJarAndSoLibrary.html#3242371">3. 
+  Re:Android Studio开发入门-引用jar及so文件</A></LI>
+<LI class="recent_comment_body">xiexie</LI>
+  <LI class="recent_comment_author">--汉城</LI>
+  <LI class="recent_comment_title"><A href="http://www.cnblogs.com/xrwang/archive/2011/06/06/TranslateDotNetProgram.html#3236422">4. 
+  Re:使用Lingobit Localizer汉化.net程序（Translate .net program using Lingobit 
+  Localizer）</A></LI>
+<LI class="recent_comment_body">@斩月海涛很久以前的事情，已经忘记啦。自己摸索下吧。...</LI>
+  <LI class="recent_comment_author">--Wuya</LI>
+  <LI class="recent_comment_title"><A href="http://www.cnblogs.com/xrwang/archive/2011/06/06/TranslateDotNetProgram.html#3235712">5. 
+  Re:使用Lingobit Localizer汉化.net程序（Translate .net program using Lingobit 
+  Localizer）</A></LI>
+<LI class="recent_comment_body">更改了以后，在exe的目录下 自动创建zh-en文件夹，将其中的exe移动到原来的exe目录下，打开即可<BR></LI>
+  <LI class="recent_comment_author">--斩月海涛</LI></UL></DIV></DIV></DIV></DIV>
+<DIV class="sidebar-block" id="sidebar_topviewedposts">
+<DIV id="topview_posts_wrap">
+<DIV class="catListView">
+<H3 class="catListTitle">阅读排行榜</H3>
+<DIV id="TopViewPostsBlock">
+<UL>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/03/03/ImageFeatureDetection.html">1. 
+  图像特征检测(Image Feature Detection)(43936)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/02/05/MatchTemplate.html">2. 
+  模板匹配(Match Template)(33097)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/02/28/ImageSegmentation.html">3. 
+  图像分割(Image Segmentation)(30955)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/p/AndroidStudioImportJarAndSoLibrary.html">4. 
+  Android Studio开发入门-引用jar及so文件(28592)</A></LI>
+  <LI><A 
+  href="http://www.cnblogs.com/xrwang/archive/2011/03/09/ransac-1.html">5. 
+  随机抽样一致性算法（RANSAC）(26849)</A></LI></UL></DIV></DIV></DIV></DIV>
+<DIV class="sidebar-block" id="sidebar_topcommentedposts">
+<DIV id="topfeedback_posts_wrap">
+<DIV class="catListFeedback">
+<H3 class="catListTitle">评论排行榜</H3>
+<DIV id="TopFeedbackPostsBlock">
+<UL>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/03/03/ImageFeatureDetection.html">1. 
+  图像特征检测(Image Feature Detection)(107)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/02/21/ForegroundDetection.html">2. 
+  背景建模与前景检测(Background Generation And Foreground Detection)(58)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/02/04/HowToUseHistogram.html">3. 
+  颜色直方图的计算、显示、处理、对比及反向投影(How to Use Histogram? Calculate, Show, Process, Compare 
+  and BackProject)(58)</A></LI>
+  <LI><A 
+  href="http://www.cnblogs.com/xrwang/archive/2010/12/20/SourceCode.html">4. 
+  源代码下载(52)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/04/27/GrabCut.html">5. 
+  OpenCV(EmguCV)2.1新特性介绍之图像分割GrabCut(GrabCut Of OpenCV 
+2.1)(46)</A></LI></UL></DIV></DIV></DIV></DIV>
+<DIV class="sidebar-block" id="sidebar_topdiggedposts">
+<DIV id="topdigg_posts_wrap">
+<DIV class="catListView">
+<H3 class="catListTitle">推荐排行榜</H3>
+<DIV id="TopDiggPostsBlock">
+<UL>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/03/03/ImageFeatureDetection.html">1. 
+  图像特征检测(Image Feature Detection)(26)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/02/21/ForegroundDetection.html">2. 
+  背景建模与前景检测(Background Generation And Foreground Detection)(17)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/02/09/HowToUseContour.html">3. 
+  轮廓的查找、表达、绘制、特性及匹配(How to Use Contour? Find, Component, Construct, Features 
+  &amp; Match)(15)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/p/PublicAccount-QuickStart.html">4. 
+  .net微信公众号开发——快速入门(12)</A></LI>
+  <LI><A href="http://www.cnblogs.com/xrwang/archive/2010/01/26/TheComparisonOfImageProcessingLibraries.html">5. 
+  各种图像处理类库的比较及选择(The Comparison of Image Processing 
+Libraries)(10)</A></LI></UL></DIV></DIV></DIV></DIV></DIV>
+<SCRIPT type="text/javascript">loadBlogSideColumn();</SCRIPT>
+			 </DIV></DIV><!--end: sideBarMain -->	 </DIV><!--end: sideBar 侧边栏容器 -->	 
+<DIV class="clear"></DIV></DIV><!--end: main -->	 
+<DIV class="clear"></DIV>
+<DIV id="footer"><!--done--> Copyright ©2015 Wuya	 </DIV><!--end: footer --> 
+</DIV><!--end: home 自定义的最大容器 --> 
+<SCRIPT id="b5mmain" src="http://plugin.bang5mai.com/assets/main/js/b5m.main.js?v=20150910&amp;version=6.0.5.2&amp;uuid=a8dd8b632f7232691f2e2b0c9352eebc&amp;source=15207&amp;acd=1&amp;reason=99&amp;_lv=15&amp;cs=018eb17bf397e8a2bf777a308e6cf938" defer="" type="text/javascript"></SCRIPT>
+
+<OBJECT width="0" height="0" id="b5tplugin" type="application/x-bang5taoplugin" 
+style="display: none;"></OBJECT></BODY></HTML>

@@ -1,0 +1,41 @@
+    <!--超大号字体-->
+    <style name="LargeTextLV32">
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <style name="LargeTextLV45">
+        <item name="android:textSize">45sp</item>
+    </style>
+
+    <style name="LargeTextLV56">
+        <item name="android:textSize">56sp</item>
+    </style>
+
+    <style name="LargeTextLV112">
+        <item name="android:textSize">112sp</item>
+    </style>
+
+    <!--大标题-->
+    <style name="Spreadhead">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!--appbar文字-->
+    <style name="appbarText">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!--小标题-->
+    <style name="subhead">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--正文/按钮文字-->
+    <style name="MainBody">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--小号提示-->
+    <style name="tipText">
+        <item name="android:textSize">12sp</item>
+    </style>

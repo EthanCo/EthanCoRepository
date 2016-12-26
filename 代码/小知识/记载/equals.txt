@@ -1,0 +1,1 @@
+("").equals(str)在str为null的时候返回false,str.equals("")在str为null时会抛空指针异常.

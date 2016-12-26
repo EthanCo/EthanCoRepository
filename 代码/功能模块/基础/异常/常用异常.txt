@@ -1,0 +1,7 @@
+　　UnsupportedOperationException不支持的操作
+
+　　IllegalArgumentException非法参数
+
+　　IndexOutOfBoundsException索引出界
+
+　　IllegalStateException非法状态

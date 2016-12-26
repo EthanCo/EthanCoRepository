@@ -1,0 +1,2 @@
+自动编译意味着每次运行都能缩短很多时间
+setting->Compiler->Make project automatically 打上勾

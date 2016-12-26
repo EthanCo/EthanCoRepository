@@ -1,0 +1,4 @@
+子控件加上android:duplicateParentState="true"
+
+或者
+子控件加上android:clickable="false"

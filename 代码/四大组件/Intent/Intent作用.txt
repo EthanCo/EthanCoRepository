@@ -1,0 +1,2 @@
+Intent是一个将要执行的动作的抽象的描述，由Intent来协助完成android各个组件之间的通讯。比如调用Activity实例化对象的startActivity()来启动一个activity,或者由broadcaseIntent()来传递给所有感兴趣的BroadcaseReceiver, 或者由startService()/bindservice()来启动一个后台的service。可见，intent主要用来启动activity或者service(并携带需要传递的参数信息)，intent理解成activity之间的粘合剂。
+总之，Intent具有激活组件和携带数据的功能！

@@ -1,0 +1,310 @@
+JDBC : Java Database Connectivity
+什么是JDBC？ 为什么学习JDBC？ Java程序中操作数据库数据，必须通过JDBC接口
+
+JDBC就像一座桥，连接Java程序与数据库 
+
+进行JDBC开发
+1、学习JDBC接口规范 java.sql javax.sql 接口如何使用
+2、在工程中导入 相应数据库驱动（JDBC实现）
+
+核心JDBC接口规范
+DriverManager 驱动管理器
+Connection 连接
+Statement 操作状态 （子接口 PreparedStatement、CallableStatement）
+ResultSet 结果集
+
+第一个JDBC程序
+1、搭建数据库环境
+启动mysql服务，连接mysql
+创建数据库 create database day13;
+切换数据库 use day13;
+创建数据表
+create table users(
+   id int primary key not null ,
+   name varchar(40),
+   pwd varchar(40),
+   email varchar(100)
+);
+
+向数据表插入几条数据
+insert into users values(1,'aaa','111','aaa@itcast.cn');
+insert into users values(2,'bbb','111','bbb@itcast.cn');
+insert into users values(3,'ccc','111','ccc@itcast.cn');
+insert into users values(4,'ddd','111','ddd@itcast.cn');
+
+2、创建web工程 day13, 导入数据库驱动
+将jar包复制 WEB-INF/lib 
+
+3、新建java程序 使用JDBC接口规范连接数据库
+步骤一：装载驱动 DriverManager.registerDriver(new Driver());
+步骤二：建立连接 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/day13","root","123");
+步骤三：将sql语句发送给数据库执行 Statement stmt = conn.createStatement();
+ResultSet rs = stmt.executeQuery("select * from users");
+while(rs.next()){
+   sysout(rs.getString("name"));
+}
+步骤四：释放资源 rs.close(); stmt.close();  conn.close();
+
+JDBC API 详解
+1、DriverManager 驱动管理器
+DriverManager.registerDriver(new Driver())
+DriverManager.getConnection(url, user, password)
+* DriverManager 可以加载多个数据库驱动 同时加载Mysql Oracle DB2 ...  getDriver(String url) 
+* 可以加载多个驱动，连接数据库时，需要url ----- 包含JDBC协议 根据协议不同识别使用哪个数据库驱动 
+
+在实际开发中，并不会直接去写DriverManager.registerDriver() ------ 所有数据库厂商默认调用加载驱动
+在开发中 只需要编写Class.forName("com.mysql.jdbc.Driver"); 
+原因有两个：原因一：DriverManager.registerDriver(new Driver()) 会导致驱动加载两次 ；原因二：如果使用new Driver() 会使java程序依赖具体数据库API
+* 在JDBC编程时，不需要import 具体数据库驱动 包 ，都import ---- java.sql 、javax.sql 
+
+2、连接任何数据库 编写JDBCURL
+Mysql URL : jdbc:mysql://localhost:3306/day13 通过？传递参数
+Oracle写法：jdbc:oracle:thin:@localhost:1521:sid
+
+编写JDBC程序连接Oracle 
+1) 启动Oracle Listener和service两个服务 
+* Listener 服务默认端口8080  (和tomcat默认端口一样)
+2) 开启cmd窗口 
+Oracle内部超级用户叫 system 
+sqlplus system/123
+* 在Oracle内部 每个用户一个数据库空间 
+
+创建表和插入记录后，必须提交事务（Oracle默认不自动提交的，mysql默认自动提交的）commit;
+3) 编写JDBC程序
+导入数据库驱动 Oracle驱动 ----- 在Oracle安装目录找到 C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib\ojdbc14.jar
+
+* 编写JDBC程序时，数据库程序不同 driverClass、url、user 、password
+
+JDBC连接MySQL 简写 如果使用localhost:3306 省略 ： jdbc:mysql:///day13
+
+常用属性：useUnicode=true&characterEncoding=UTF-8
+jdbc:mysql:///day13?useUnicode=true&characterEncoding=UTF-8 参数拼接URL后面 ，参数指定客户端与服务器连接使用字符集
+* 当客户端编码 与服务器端编码不同，通过参数设置编码 
+例如：客户端gbk 服务器utf8 ---- useUnicode=true&characterEncoding=gbk (这里字符集与客户端编码一致)
+
+
+3、Connection接口 ---- JDBC连接表示接口 
+* Connection接口一个对象 代表 一个数据库 连接 
+作用两点：
+1) 获得操作数据库Statement对象
+createStatement() ----- Statement 获得普通操作状态对象
+prepareStatement(String sql) ----- PreparedStatement(是Statement子接口) 预编译状态对象 
+prepareCall(String sql)  ------ CallableStatement(是PreparedStatement子接口) 操作数据库内部存储过程的 
+* Statement对象可以向数据库发送sql语句，获得ResultSet结果集 
+
+2) 进行事务控制 
+setAutoCommit(boolean) ; 开启一个事务
+commit(); 提交一个事务
+rollback(); 回滚一个事务 
+
+4、Statement接口 ---- 代表一个操作状态
+作用：操作数据库SQL语句、调用存储过程
+executeQuery(String sql) ：用于向数据发送查询语句。select语句，返回值ResultSet 结果集
+executeUpdate(String sql)：用于向数据库发送insert、update或delete语句 返回值int 受影响行数
+execute(String sql)：用于向数据库发送任意sql语句 --- 建立数据库 建立数据表，增删改查 --- 返回值boolean 
+* sql结果是ResultSet 返回true --- 否则false
+
+批处理 ---- 一次执行多条sql
+addBatch(String sql) ：把多条sql语句放到一个批处理中。
+executeBatch()：向数据库发送一批sql语句执行。 
+
+5、ResultSet
+while(rs.next){
+  // 根据数据表列类型 --- 转换表规则，调用java中相应getXXX方法 
+}
+
+思考：如果一个SQL语句只返回一行数据 ， 还用使用while？
+if(rs.next){ // 因为结果只有1行，存在，不存在
+}
+
+------------------------------------------------------------------------
+可滚动结果集 ---- 创建Statement时设置结果集可滚动性 
+createStatement(int resultSetType, int resultSetConcurrency) 
+resultSetType - 结果集类型，它是 ResultSet.TYPE_FORWARD_ONLY（只支持next 不支持其它滚动）、ResultSet.TYPE_SCROLL_INSENSITIVE（无法看到更改后数据） 或 ResultSet.TYPE_SCROLL_SENSITIVE（看到更改后数据） 之一
+resultSetConcurrency - 并发类型；它是 ResultSet.CONCUR_READ_ONLY(只读) 或 ResultSet.CONCUR_UPDATABLE(可修改) 之一 
+
+释放资源写入finally 代码块 ----- finally中代码一定执行 
+
+练习：编写程序对users表进行增删改查操作
+
+练习：编写工具类简化CRUD操作。(异常暂不处理)
+
+JAVAEE（Java Enterprise Edition ） 模式 ： DAO模式
+23种设计模式 
+* JavaEE体系结构 
+* MVC 和 JavaEE经典三层结构 由两拨人分别提出的
+三层结构中业务层、数据持久层 ---- Model
+三层结构中web层 Servlet ---- Controller
+三层结构中web层 JSP ---- View
+
+DAO模式：数据层用DAO模式完全将数据源底层实现封装起来，业务层开发人员不需要了解底层实现。通过对象操作完成对数据源增删改查！
+Business Object ：代表数据的使用者 （业务层程序）
+DataAccessObject ：抽象并封装了对底层数据源的操作 （数据层程序）
+DataSource 数据源 --- mysql数据库
+TransferObject 表示数据的Java Bean 
+
+BussinessObject 通过 将transferObject 传递 DataAccessObject 完成对DataSource的增删改查 
+
+用DAO模式重写对users表增删改查 ！
+在service包中创建 BusinessObject对象
+在dao包中 创建 DataAccessObject对象
+在domain包中 创建 TransferObject 对象
+
+* 业务层通过对象的操作，完成对数据源增删改查
+DAO模式，将增删改查sql封装起来，方法参数和返回值都是对象，业务层通过操作这些对象，完成对数据库增删改查！
+
+登陆程序
+login.jsp ---- LoginServlet(web层) ---- UserService(业务层) ---- UserDAO(数据层)
+
+SQL注入 
+在form中提交信息时，根据SQL语法特殊性，编写关键字，而这些关键字拼接到sql中会改变原来sql运行效果 --- 达到攻击目的
+String sql = "select * from users where name = '' and pwd =''";
+如果用户输入关键内容，改变登陆结果
+用户名: ddd' or '1'='1
+密码：xxx
+select * from users where name = 'ddd' or '1'='1' and pwd ='xxx'
+
+用注释注入 -- 
+用户名: ddd' -- 
+密码: xxx
+select * from users where name = 'ddd' -- ' and pwd ='xxx'
+
+不知道账户登陆
+用户名: xxx' or '1'='1' -- 
+密码: xxx
+select * from users where name = 'xxx' or '1'='1' -- ' and pwd ='xxx'
+
+在Java语言解决SQL 注入 ---- 使用预编译 PreparedStatement
+
+在数据库中大数据 LOB ------ Oracle 提供Clob Blob  Clob大型文本数据 Blob大型二进制数据
+Mysql Text 相当于 Oracle Clob 
+* LOB 最大存储范围4GB longText longBlob 
+
+创建存放Text文本文件 table
+create table textdata(
+   id int primary key not null auto_increment,
+   mytext longtext
+);
+
+java.lang.AbstractMethodError: com.mysql.jdbc.PreparedStatement.setCharacterStream(ILjava/io/Reader;)V
+没有设置文件长度  ---- 必须设置文件长度，类型int
+
+com.mysql.jdbc.PacketTooBigException: Packet for query is too large (1928574 > 1048576). You can change this value on the server by setting the max_allowed_packet' variable.
+文件太大了 
+* 必须设置mysql/my.ini 
+[mysqld] max_allowed_packet=64M
+
+新建存放blob类型table 
+create table blobdata(
+   id int primary key not null auto_increment,
+   myblob longblob 
+);
+
+* 在实际开发中，很少需要将 大文本文件或者音乐、电影保存到数据库 
+----------------------------------------------------------------------------
+
+关于JDBC编程批处理操作
+第一种方式：使用Statement接口的批处理
+addBatch(sql) 将一条sql 加入批处理到缓存
+executeBatch() 执行批处理 将这组sql一次性发送数据库
+clearBatch() 清除批处理缓存 
+缺点：如果sql结构都一样
+                Insert into user(name,password) values(‘aa’,’111’);
+		Insert into user(name,password) values(‘bb’,’222’);
+		Insert into user(name,password) values(‘cc’,’333’);
+		Insert into user(name,password) values(‘dd’,’444’);
+会导致数据库编译sql语句四次 ---- 性能比较差
+
+第二种方式：使用PreparedStatement进行批处理
+好处：如果连续执行多条结构相同sql --- 采用预编译 ---- SQL只需要编译一次
+
+案例：向数据库插入50000条数据
+create table person(
+   id int primary key,
+   name varchar(40),
+   email varchar(100)
+);
+
+mysql 50000 --- 59秒
+Oracle 50000 --- 906毫秒 100000 --- 1328毫秒
+
+如果sql 结构都相同 --- PreparedStatement 批处理
+如果sql  结构存在不同 ---  Statement 批处理
+
+
+学习重点：
+1、JDBC编程步骤 ：装载驱动、建立连接、操作数据、释放资源 *
+2、对一张数据表通过JDBC完成增删改查  
+3、对一张表编写增删改查DAO  * 
+4、案例：SQL注入登陆案例  *
+5、大数据处理Text Blob
+6、批处理两种 Statement PreparedStatement
+
+* 参加阅读资料
+jdbc-introduce.pdf
+
+昨天目录 sql练习 *
+
+之前债务：用户登陆注册(xml pull)、cookie/session: 浏览记录、购物车  *******
+JSP： form编写 JSTL+EL显示 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

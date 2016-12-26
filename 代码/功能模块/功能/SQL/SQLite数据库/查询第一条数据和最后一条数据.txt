@@ -1,0 +1,4 @@
+查第一条数据
+SELECT * FROM person LIMIT 1
+查询最后一条数据
+SELECT * FROM person ORDER BY id DESC LIMIT 1

@@ -1,0 +1,2 @@
+Find in Path  全局搜索   原本是Ctrl+Shift+F，改为Ctrl+Shift+S
+reformat Code 格式化代码 原来是Ctrl+Alt+L，添加Ctrl+Shift+F

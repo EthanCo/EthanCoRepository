@@ -1,0 +1,6 @@
+back 			向后
+forward			向前
+select Next Tab		选择下一个标签
+select Previous Tab	现在前一个标签
+find in path		路径中找到
+Reformat Code		格式化代码

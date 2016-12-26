@@ -1,0 +1,10 @@
+desc <table> //查看表结构 
+select * from <table> //查询所有列
+select , from <table> ;//查看指定列
+select distinct , from table ;//非重复查询
+insert into users(_id,username,password) select * from users;//复制
+select username from users where username like 'S%' ;//非重名字首字母为大写S的用户
+select username from users where username like '__S%' ;//非重名字第三个字母为大写S的用户
+select * from users where _id in(001,220,230);
+select * from user order by _id;//以id的顺序排列
+select * from user order by _id desc;//以id反的顺序排

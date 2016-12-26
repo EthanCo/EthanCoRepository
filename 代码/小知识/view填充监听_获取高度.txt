@@ -1,0 +1,15 @@
+getHeight()和getMeasuredHeight()的区别：
+	getMeasuredHeight()获取测量完的高度，只要在onMeasure方法执行完，就可以用
+	                    它获取到宽高，在自定义控件内部多使用这个
+						使用view.measure(0,0)方法可以主动通知系统去测量，然后就
+						可以直接使用它获取宽高
+	getHeight()：必须在onLayout方法执行完后，才能获得宽高
+				view.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+					@Override
+					public void onGlobalLayout() {
+					headerView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+					int headerViewHeight = headerView.getHeight();
+					直接可以获取宽高
+			}
+		});
+	3.setSelection(position);将对应位置的item放置到屏幕顶端

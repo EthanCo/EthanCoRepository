@@ -1,0 +1,1 @@
+同一局域网安装apk:adb connect ip:port->adb install 路径.apk

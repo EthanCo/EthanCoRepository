@@ -1,0 +1,15 @@
+增加记录
+ 
+  INSERT INTO 表名(字段名，字段名) VALUES (值，值)；
+ 
+删除记录
+ 
+  DELETE FROM 表名 WHERE 条件(oracal中就可以不要from)
+ 
+修改记录
+ 
+  UPDATE 表名 SET 字段=值，字段=值 WHERE 条件
+ 
+查询记录
+ 
+  SELECT 字段，字段 FROM 表名 WHERE 条件

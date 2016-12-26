@@ -1,0 +1,5 @@
+Android有三类窗口
+应用程序窗口 (Application Window): 包括所有应用程序自己创建的窗口，以及在应用起来之前系统负责显示的窗口。
+子窗口(Sub Window)：比如应用自定义的对话框，或者输入法窗口，子窗口必须依附于某个应用窗口（设置相同的token)。
+系 统窗口(System Window): 系统设计的，不依附于任何应用的窗口，比如说，状态栏(Status Bar), 导航栏(Navigation Bar), 壁纸(Wallpaper), 来电显示窗口(Phone)，锁屏窗口(KeyGuard), 信息提示窗口(Toast)， 音量调整窗口，鼠标光标等等。
+popupwindow是属于 sub window的，所以一定要有一个view去依附

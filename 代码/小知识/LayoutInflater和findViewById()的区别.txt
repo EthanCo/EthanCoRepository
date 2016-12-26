@@ -1,0 +1,2 @@
+LayoutInflater用来找xml布局文件,并且实例化
+findViewById()是找具体Xml下的具体widget控件

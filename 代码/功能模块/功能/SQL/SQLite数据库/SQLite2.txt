@@ -1,0 +1,16 @@
+SQLite数据库
+	1.储存数据不区分类型
+	2.创建数据库的表时可以不指定数据类型
+		CREATE TABLE person(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(20))
+		CREATE TABLE person(id INTEGER PRIMARY KEY AUTOINCREMENT,name)
+	3.分页查询
+		select * from person LIMIT 20 offset 10
+		简写：select * from person LIMIT 10,20 //从11条开始取20条数据
+
+创建数据库
+	1.定义类继承SQLiteOpenHelper
+	2.声明构造函数,4个参数
+	3.重写onCreate()方法
+	4.重写upGrade()方法
+	注：SQLite数据库中列一旦创建不能修改,如果一定要修改,需要重写创建表,拷贝数据
+CRUD操作

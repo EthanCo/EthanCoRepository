@@ -1,0 +1,24 @@
+架构划分
+
+根据结构划分
+
+view 视图层
+biz bean utils 业务逻辑层 
+db 数据访问层
+
+view 视图层 layout adapter
+dao即使data access object，主要负责处理数据库操作；
+biz(service)，business层，处理数据逻辑，验证数据，负责整个应用程序的相关业务流程，并用代码实现出来；	对SharePreference操作,获取版本号,登陆逻辑,常量,下载
+util，即utility，工具辅助层，一组通用的代码集合，比如处理多语言功能，网站非法信息过滤等等功能的代码集； xml
+web，即是前台网页处理的后台代码，负责把从数据库中处理过的数据，通过web层处理之后，显示成html代码的部分
+domain(bean)：这一层是用来管理javaBean实体对象的；
+
+根据功能划分
+比如腾讯
+视频 cn.tencent.video
+聊天 cn.tencent.chat
+空间 cn.tencent.qqzone
+新闻 cn.tencent.news
+
+没标题样式
+@android:style/Theme.NoTitleBar

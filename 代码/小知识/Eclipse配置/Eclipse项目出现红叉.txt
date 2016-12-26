@@ -1,0 +1,8 @@
+很多学习者可能都被这个红叉困惑过，解决办法如下：
+第一步：你要确保这个项目没有问题，有的项目本身就有问题，例如：xml文件，java程序等本身就有错。
+第二步：在Eclipse菜单中选择“Project”----〉Clean   解决不了，下一步
+第三步：右键选择项目，选择“Resource----〉Clean up” 解决不了，去看下一步
+第四步：右键选择项目，选择“Build Path..”  查看Libraries下是否有虚拟路径，如果有请删除，解决不了请看下一步
+第五步：打开project.properties文件，查看target=android-9 对应的版本号，在你的sdk中是否有该版本，如果没有，请修改版本号，解决不了请看下一步。
+第六步：右键选择项目，选择"Android tools"--->Fix Project Properties
+一般情况下，经过以上6步即可解决，再不行，请再百度和谷歌
