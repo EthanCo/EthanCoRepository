@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android资源</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="resources_string">这是字符串</string>
+    <string name="is_true">正确</string>
+    <string name="is_false">错误</string>
+
+    <color name="resources_color">#AA33BB</color> <!-- 颜色 -->
+    <color name="resources_color2">#9977DD</color>
+    <color name="resources_color3">#FFFF66</color>
+
+    <dimen name="bt_layout_height">40dp</dimen> <!-- 尺寸资源 -->
+    <dimen name="spacing">8dp</dimen>
+    <!-- 定义gridview组件中每个单元格的宽度和高度 -->
+    <dimen name="cell_width">60dp</dimen>
+    <dimen name="cell_height">66dp</dimen>
+
+    <bool name="is_male">true</bool> <!-- boolean值 -->
+    <integer name="num_12">12</integer> <!-- int值 -->
+
+
+    <!-- 定义字符串数组 -->
+    <string-array name="str_arr">
+        <item>@string/resources_string</item>
+        <item>@string/is_true</item>
+        <item>@string/is_false</item>
+    </string-array>
+    <!-- 定义一个Drawable数组 -->
+    <array name="drawable_arr">
+        <item>@color/resources_color</item>
+        <item>@color/resources_color2</item>
+        <item>@color/resources_color3</item>
+    </array>
+
+</resources>

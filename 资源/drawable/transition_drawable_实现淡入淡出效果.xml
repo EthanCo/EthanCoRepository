@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--可设置为View的背景或者设置为ImageView的Src-->
+<transition xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/img1"></item>
+    <item android:drawable="@mipmap/img2"></item>
+</transition>
+
+<!--layout代码-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:src="@drawable/transition_drawable"></ImageView>
+		
+<!--java代码-->
+imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (imageView.getDrawable() instanceof TransitionDrawable) {
+                    TransitionDrawable drawable = (TransitionDrawable) imageView.getDrawable();
+                    drawable.startTransition(1000);
+                }
+            }
+        });

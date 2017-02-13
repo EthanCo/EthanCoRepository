@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--当一个View希望自己的背景比自己实际控制区域小的时候，可以使用InsertDrawable-->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetBottom="20dp"
+    android:insetLeft="20dp"
+    android:insetRight="20dp"
+    android:insetTop="20dp">
+    <shape android:shape="rectangle">
+        <solid android:color="#FF0000"></solid>
+    </shape>
+</inset>

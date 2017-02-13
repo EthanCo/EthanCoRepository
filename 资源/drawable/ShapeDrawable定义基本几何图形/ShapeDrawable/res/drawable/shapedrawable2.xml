@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+ <!-- rectangle 矩形 oval 椭圆形 line 线 ring 圆圈 -->
+    <!-- 定义几何图形的四个角的弧度 -->
+    <corners
+        android:radius="8dp"/>
+    <!-- 定义几何形状的内边距 -->
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+    <!-- 渐变色 -->
+    <gradient 
+        android:startColor="#99CCCC"
+        android:endColor="#FFCC99"
+        android:angle="90"
+        />
+
+</shape>

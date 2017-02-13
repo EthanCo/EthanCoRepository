@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--在作为背景时:可以通过设置Drawable的setLevel方法来设置不同的等级从而切换具体的Drawable-->
+<!--在用作ImageVIew的前景色时，还可以通过ImageView的setImageLevel方法来切换Drawable-->
+<!--等级范围是0~1000-->
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@mipmap/img1"
+        android:maxLevel="499"
+        android:minLevel="0"></item>
+    <item
+        android:drawable="@mipmap/img2"
+        android:maxLevel="1000"
+        android:minLevel="500"></item>
+</level-list>
+
+
+<!--Layout中使用-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:src="@drawable/levellist_img"></ImageView>
+		
+<!--Java代码中设置-->
+	imageView.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			imageView.setImageLevel(1000);
+		}
+	});
